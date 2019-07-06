@@ -1,0 +1,17 @@
+{
+    "and":[
+       {
+            "equals":{
+                "path":"/api/auth/verify",
+                "method":"GET"
+            }
+        },
+        {
+            "matches":{
+                "headers": {
+                    "accessToken" : "Bearer 1234567890"
+                }
+            }
+        }
+    ]
+ }

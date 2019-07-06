@@ -1,0 +1,680 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot rpa="false" generated="20190703 23:43:13.165" generator="Robot 3.1.2 (Python 2.7.10 on darwin)">
+<suite source="/Users/tiger/exam-service-robot/Robot testing/testcases/mock testing.robot" id="s1" name="Mock Testing">
+<test id="s1-t1" name="TC0101 Get exam by ID successful">
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>server</arg>
+<arg>${url}</arg>
+</arguments>
+<msg timestamp="20190703 23:43:13.261" level="TRACE">Arguments: [ 'server' | 'http://localhost:9000' ]</msg>
+<msg timestamp="20190703 23:43:13.262" level="INFO">Creating Session using : alias=server, url=http://localhost:9000, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<msg timestamp="20190703 23:43:13.262" level="DEBUG">Creating session: server</msg>
+<msg timestamp="20190703 23:43:13.262" level="DEBUG">Argument types are:
+&lt;type 'bool'&gt;</msg>
+<msg timestamp="20190703 23:43:13.262" level="TRACE">Return: &lt;requests.sessions.Session object at 0x10b200450&gt;</msg>
+<status status="PASS" endtime="20190703 23:43:13.262" starttime="20190703 23:43:13.261"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the
+given `alias`</doc>
+<arguments>
+<arg>server</arg>
+<arg>${get_exam_by_ID_uri}/1</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20190703 23:43:13.262" level="TRACE">Arguments: [ 'server' | '/api/exam/1' ]</msg>
+<msg timestamp="20190703 23:43:13.269" level="DEBUG">Starting new HTTP connection (1): localhost:9000</msg>
+<msg timestamp="20190703 23:43:13.276" level="DEBUG">http://localhost:9000 "GET /api/exam/1 HTTP/1.1" 200 None</msg>
+<msg timestamp="20190703 23:43:13.276" level="INFO">Get Request using : alias=server, uri=/api/exam/1, headers=None json=None</msg>
+<msg timestamp="20190703 23:43:13.276" level="TRACE">Return: &lt;Response [200]&gt;</msg>
+<msg timestamp="20190703 23:43:13.276" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20190703 23:43:13.276" starttime="20190703 23:43:13.262"></status>
+</kw>
+<kw name="Get Dictionary Keys" library="Collections">
+<doc>Returns keys of the given ``dictionary`` as a list.</doc>
+<arguments>
+<arg>${resp.json()}[data]</arg>
+</arguments>
+<assign>
+<var>${key}</var>
+</assign>
+<msg timestamp="20190703 23:43:13.277" level="TRACE">Arguments: [ {'exam_id': 1,
+ 'exam_name': '\u0e04\u0e33\u0e16\u0e32\u0e21 Coding',
+ 'questions': [{'choices': [{'choice_pic': None,
+                             'choice_score': 1,
+                             'choice_text': 'Camel case'},
+                            {'choice_pic': None,
+                             'choice_score': -1,
+                             'choice_text': 'Turtle case'},
+                            {'choice_pic': None,
+                             'choice_score': -1,
+                             'choice_text': 'Falcon case'},
+                            {'choice_pic': None,
+                             'choice_score': -1,
+                             'choice_text': 'Shark case'},
+                            {'choice_pic': None,
+                             'choice_score': 1,
+                             'choice_text': 'Snake case'}],
+                'question': {'question_pic': None,
+                             'question_text': '\u0e2b\u0e25\u0e31\u0e01\u0e01\u0e32\u0e23\u0e15\u0e31\u0e49\u0e07\u0e0a\u0e37\u0e48\u0e2d\u0e15\u0e31\u0e27\u0e41\u0e1b\u0e23\u0e21\u0e35\u0e2d\u0e30\u0e44\u0e23\u0e1a\u0e49\u0e32\u0e07 ?',
+                             'question_type': 'muit'}},
+               {'choices': [{'choice_pic': None,
+                             'choice_score': 1,
+                             'choice_text': 'if(x &lt; 2) @ return true : return false;'},
+                            {'choice_pic': None,
+                             'choice_score': 0,
+                             'choice_text': 'if(x &lt; 2) ! return true : return false'},
+                            {'choice_pic': None,
+                             'choice_score': 0,
+                             'choice_text': 'if(x &lt; 2) ? return true : return false;'},
+                            {'choice_pic': None,
+                             'choice_score': 0,
+                             'choice_text': 'if(x &lt; 2) ? return true ; return false;'}],
+                'question': {'question_pic': None,
+                             'question_text': '\u0e2b\u0e25\u0e31\u0e01\u0e01\u0e32\u0e23\u0e40\u0e02\u0e35\u0e22\u0e19 if \u0e41\u0e1a\u0e1a\u0e22\u0e48\u0e2d\u0e17\u0e35\u0e48\u0e16\u0e39\u0e01\u0e15\u0e49\u0e2d\u0e07',
+                             'question_type': 'single'}}]} ]</msg>
+<msg timestamp="20190703 23:43:13.279" level="TRACE">Return: ['exam_id', 'exam_name', 'questions']</msg>
+<msg timestamp="20190703 23:43:13.279" level="INFO">${key} = [u'exam_id', u'exam_name', u'questions']</msg>
+<status status="PASS" endtime="20190703 23:43:13.279" starttime="20190703 23:43:13.277"></status>
+</kw>
+<kw name="Get Dictionary Keys" library="Collections">
+<doc>Returns keys of the given ``dictionary`` as a list.</doc>
+<arguments>
+<arg>${resp.json()}[data][questions][0]</arg>
+</arguments>
+<assign>
+<var>${key_question}</var>
+</assign>
+<msg timestamp="20190703 23:43:13.279" level="TRACE">Arguments: [ {'choices': [{'choice_pic': None,
+              'choice_score': 1,
+              'choice_text': 'Camel case'},
+             {'choice_pic': None,
+              'choice_score': -1,
+              'choice_text': 'Turtle case'},
+             {'choice_pic': None,
+              'choice_score': -1,
+              'choice_text': 'Falcon case'},
+             {'choice_pic': None,
+              'choice_score': -1,
+              'choice_text': 'Shark case'},
+             {'choice_pic': None,
+              'choice_score': 1,
+              'choice_text': 'Snake case'}],
+ 'question': {'question_pic': None,
+              'question_text': '\u0e2b\u0e25\u0e31\u0e01\u0e01\u0e32\u0e23\u0e15\u0e31\u0e49\u0e07\u0e0a\u0e37\u0e48\u0e2d\u0e15\u0e31\u0e27\u0e41\u0e1b\u0e23\u0e21\u0e35\u0e2d\u0e30\u0e44\u0e23\u0e1a\u0e49\u0e32\u0e07 ?',
+              'question_type': 'muit'}} ]</msg>
+<msg timestamp="20190703 23:43:13.280" level="TRACE">Return: ['choices', 'question']</msg>
+<msg timestamp="20190703 23:43:13.280" level="INFO">${key_question} = [u'choices', u'question']</msg>
+<status status="PASS" endtime="20190703 23:43:13.280" starttime="20190703 23:43:13.279"></status>
+</kw>
+<kw name="Lists Should Be Equal" library="Collections">
+<doc>Fails if given lists are unequal.</doc>
+<arguments>
+<arg>${key}</arg>
+<arg>${exam_by_id_resp}</arg>
+</arguments>
+<msg timestamp="20190703 23:43:13.281" level="TRACE">Arguments: [ ['exam_id', 'exam_name', 'questions'] | ['exam_id', 'exam_name', 'questions'] ]</msg>
+<msg timestamp="20190703 23:43:13.281" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20190703 23:43:13.281" starttime="20190703 23:43:13.280"></status>
+</kw>
+<kw name="Lists Should Be Equal" library="Collections">
+<doc>Fails if given lists are unequal.</doc>
+<arguments>
+<arg>${key_question}</arg>
+<arg>${exam_by_id_question_resp}</arg>
+</arguments>
+<msg timestamp="20190703 23:43:13.282" level="TRACE">Arguments: [ ['choices', 'question'] | ['choices', 'question'] ]</msg>
+<msg timestamp="20190703 23:43:13.282" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20190703 23:43:13.282" starttime="20190703 23:43:13.281"></status>
+</kw>
+<kw name="Response status is successful" library="TC keyword">
+<arguments>
+<arg>${resp}</arg>
+</arguments>
+<msg timestamp="20190703 23:43:13.282" level="TRACE">Arguments: [ ${resp}=&lt;Response [200]&gt; ]</msg>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${resp.status_code}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20190703 23:43:13.283" level="TRACE">Arguments: [ 200 | '200' ]</msg>
+<msg timestamp="20190703 23:43:13.283" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<msg timestamp="20190703 23:43:13.283" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20190703 23:43:13.283" starttime="20190703 23:43:13.282"></status>
+</kw>
+<msg timestamp="20190703 23:43:13.283" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20190703 23:43:13.283" starttime="20190703 23:43:13.282"></status>
+</kw>
+<kw name="Status code is ok" library="TC keyword">
+<arguments>
+<arg>${resp}</arg>
+</arguments>
+<msg timestamp="20190703 23:43:13.283" level="TRACE">Arguments: [ ${resp}=&lt;Response [200]&gt; ]</msg>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${resp.json()}[status][code]</arg>
+<arg>1000</arg>
+</arguments>
+<msg timestamp="20190703 23:43:13.284" level="TRACE">Arguments: [ '1000' | '1000' ]</msg>
+<msg timestamp="20190703 23:43:13.284" level="DEBUG">Argument types are:
+&lt;type 'unicode'&gt;
+&lt;type 'unicode'&gt;</msg>
+<msg timestamp="20190703 23:43:13.284" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20190703 23:43:13.284" starttime="20190703 23:43:13.283"></status>
+</kw>
+<msg timestamp="20190703 23:43:13.284" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20190703 23:43:13.284" starttime="20190703 23:43:13.283"></status>
+</kw>
+<status status="PASS" endtime="20190703 23:43:13.284" critical="yes" starttime="20190703 23:43:13.261"></status>
+</test>
+<test id="s1-t2" name="TC0201 Get the entire user's history successful">
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>server</arg>
+<arg>${url}</arg>
+</arguments>
+<msg timestamp="20190703 23:43:13.284" level="TRACE">Arguments: [ 'server' | 'http://localhost:9000' ]</msg>
+<msg timestamp="20190703 23:43:13.285" level="INFO">Creating Session using : alias=server, url=http://localhost:9000, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<msg timestamp="20190703 23:43:13.285" level="DEBUG">Creating session: server</msg>
+<msg timestamp="20190703 23:43:13.285" level="DEBUG">Argument types are:
+&lt;type 'bool'&gt;</msg>
+<msg timestamp="20190703 23:43:13.285" level="TRACE">Return: &lt;requests.sessions.Session object at 0x10b200650&gt;</msg>
+<status status="PASS" endtime="20190703 23:43:13.285" starttime="20190703 23:43:13.284"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the
+given `alias`</doc>
+<arguments>
+<arg>server</arg>
+<arg>${exam_history_uri}/1</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20190703 23:43:13.285" level="TRACE">Arguments: [ 'server' | '/api/exam/history/1' ]</msg>
+<msg timestamp="20190703 23:43:13.287" level="DEBUG">Starting new HTTP connection (1): localhost:9000</msg>
+<msg timestamp="20190703 23:43:13.290" level="DEBUG">http://localhost:9000 "GET /api/exam/history/1 HTTP/1.1" 200 None</msg>
+<msg timestamp="20190703 23:43:13.291" level="INFO">Get Request using : alias=server, uri=/api/exam/history/1, headers=None json=None</msg>
+<msg timestamp="20190703 23:43:13.291" level="TRACE">Return: &lt;Response [200]&gt;</msg>
+<msg timestamp="20190703 23:43:13.291" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20190703 23:43:13.291" starttime="20190703 23:43:13.285"></status>
+</kw>
+<kw name="Get Dictionary Keys" library="Collections">
+<doc>Returns keys of the given ``dictionary`` as a list.</doc>
+<arguments>
+<arg>${resp.json()}[data][all_history][0]</arg>
+</arguments>
+<assign>
+<var>${key}</var>
+</assign>
+<msg timestamp="20190703 23:43:13.292" level="TRACE">Arguments: [ {'exam_id': 1,
+ 'exam_name': '\u0e04\u0e33\u0e16\u0e32\u0e21 Coding',
+ 'exam_total_score': 0,
+ 'point_exam': 2,
+ 'timestamp': '2019-06-26T04:38:44.000+0000'} ]</msg>
+<msg timestamp="20190703 23:43:13.292" level="TRACE">Return: ['exam_id', 'exam_name', 'exam_total_score', 'point_exam', 'timestamp']</msg>
+<msg timestamp="20190703 23:43:13.292" level="INFO">${key} = [u'exam_id', u'exam_name', u'exam_total_score', u'point_exam', u'timestamp']</msg>
+<status status="PASS" endtime="20190703 23:43:13.292" starttime="20190703 23:43:13.291"></status>
+</kw>
+<kw name="Lists Should Be Equal" library="Collections">
+<doc>Fails if given lists are unequal.</doc>
+<arguments>
+<arg>${key}</arg>
+<arg>${exam_content_resp}</arg>
+</arguments>
+<msg timestamp="20190703 23:43:13.292" level="TRACE">Arguments: [ ['exam_id', 'exam_name', 'exam_total_score', 'point_exam', 'timestamp'] | ['exam_id', 'exam_name', 'exam_total_score', 'point_exam', 'timestamp'] ]</msg>
+<msg timestamp="20190703 23:43:13.292" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20190703 23:43:13.292" starttime="20190703 23:43:13.292"></status>
+</kw>
+<kw name="Response status is successful" library="TC keyword">
+<arguments>
+<arg>${resp}</arg>
+</arguments>
+<msg timestamp="20190703 23:43:13.293" level="TRACE">Arguments: [ ${resp}=&lt;Response [200]&gt; ]</msg>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${resp.status_code}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20190703 23:43:13.293" level="TRACE">Arguments: [ 200 | '200' ]</msg>
+<msg timestamp="20190703 23:43:13.293" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<msg timestamp="20190703 23:43:13.293" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20190703 23:43:13.293" starttime="20190703 23:43:13.293"></status>
+</kw>
+<msg timestamp="20190703 23:43:13.293" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20190703 23:43:13.293" starttime="20190703 23:43:13.292"></status>
+</kw>
+<kw name="Status code is ok" library="TC keyword">
+<arguments>
+<arg>${resp}</arg>
+</arguments>
+<msg timestamp="20190703 23:43:13.293" level="TRACE">Arguments: [ ${resp}=&lt;Response [200]&gt; ]</msg>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${resp.json()}[status][code]</arg>
+<arg>1000</arg>
+</arguments>
+<msg timestamp="20190703 23:43:13.294" level="TRACE">Arguments: [ '1000' | '1000' ]</msg>
+<msg timestamp="20190703 23:43:13.294" level="DEBUG">Argument types are:
+&lt;type 'unicode'&gt;
+&lt;type 'unicode'&gt;</msg>
+<msg timestamp="20190703 23:43:13.294" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20190703 23:43:13.294" starttime="20190703 23:43:13.294"></status>
+</kw>
+<msg timestamp="20190703 23:43:13.294" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20190703 23:43:13.294" starttime="20190703 23:43:13.293"></status>
+</kw>
+<status status="PASS" endtime="20190703 23:43:13.295" critical="yes" starttime="20190703 23:43:13.284"></status>
+</test>
+<test id="s1-t3" name="TC0301 Get all list of exams successful">
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>server</arg>
+<arg>${url}</arg>
+</arguments>
+<msg timestamp="20190703 23:43:13.295" level="TRACE">Arguments: [ 'server' | 'http://localhost:9000' ]</msg>
+<msg timestamp="20190703 23:43:13.295" level="INFO">Creating Session using : alias=server, url=http://localhost:9000, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<msg timestamp="20190703 23:43:13.296" level="DEBUG">Creating session: server</msg>
+<msg timestamp="20190703 23:43:13.296" level="DEBUG">Argument types are:
+&lt;type 'bool'&gt;</msg>
+<msg timestamp="20190703 23:43:13.297" level="TRACE">Return: &lt;requests.sessions.Session object at 0x10b262810&gt;</msg>
+<status status="PASS" endtime="20190703 23:43:13.297" starttime="20190703 23:43:13.295"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the
+given `alias`</doc>
+<arguments>
+<arg>server</arg>
+<arg>${list_exam_uri}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20190703 23:43:13.297" level="TRACE">Arguments: [ 'server' | '/api/exam/list_exam' ]</msg>
+<msg timestamp="20190703 23:43:13.299" level="DEBUG">Starting new HTTP connection (1): localhost:9000</msg>
+<msg timestamp="20190703 23:43:13.303" level="DEBUG">http://localhost:9000 "GET /api/exam/list_exam HTTP/1.1" 200 None</msg>
+<msg timestamp="20190703 23:43:13.303" level="INFO">Get Request using : alias=server, uri=/api/exam/list_exam, headers=None json=None</msg>
+<msg timestamp="20190703 23:43:13.303" level="TRACE">Return: &lt;Response [200]&gt;</msg>
+<msg timestamp="20190703 23:43:13.303" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20190703 23:43:13.303" starttime="20190703 23:43:13.297"></status>
+</kw>
+<kw name="Get Dictionary Keys" library="Collections">
+<doc>Returns keys of the given ``dictionary`` as a list.</doc>
+<arguments>
+<arg>${resp.json()}[data][0]</arg>
+</arguments>
+<assign>
+<var>${key}</var>
+</assign>
+<msg timestamp="20190703 23:43:13.304" level="TRACE">Arguments: [ {'count_question': 2,
+ 'exam_id': 1,
+ 'exam_name': '\u0e04\u0e33\u0e16\u0e32\u0e21 Coding',
+ 'exam_total_score': 0} ]</msg>
+<msg timestamp="20190703 23:43:13.304" level="TRACE">Return: ['count_question', 'exam_id', 'exam_name', 'exam_total_score']</msg>
+<msg timestamp="20190703 23:43:13.304" level="INFO">${key} = [u'count_question', u'exam_id', u'exam_name', u'exam_total_score']</msg>
+<status status="PASS" endtime="20190703 23:43:13.304" starttime="20190703 23:43:13.303"></status>
+</kw>
+<kw name="Lists Should Be Equal" library="Collections">
+<doc>Fails if given lists are unequal.</doc>
+<arguments>
+<arg>${key}</arg>
+<arg>${exam_list_resp}</arg>
+</arguments>
+<msg timestamp="20190703 23:43:13.304" level="TRACE">Arguments: [ ['count_question', 'exam_id', 'exam_name', 'exam_total_score'] | ['count_question', 'exam_id', 'exam_name', 'exam_total_score'] ]</msg>
+<msg timestamp="20190703 23:43:13.304" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20190703 23:43:13.304" starttime="20190703 23:43:13.304"></status>
+</kw>
+<kw name="Response status is successful" library="TC keyword">
+<arguments>
+<arg>${resp}</arg>
+</arguments>
+<msg timestamp="20190703 23:43:13.305" level="TRACE">Arguments: [ ${resp}=&lt;Response [200]&gt; ]</msg>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${resp.status_code}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20190703 23:43:13.305" level="TRACE">Arguments: [ 200 | '200' ]</msg>
+<msg timestamp="20190703 23:43:13.305" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<msg timestamp="20190703 23:43:13.305" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20190703 23:43:13.305" starttime="20190703 23:43:13.305"></status>
+</kw>
+<msg timestamp="20190703 23:43:13.305" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20190703 23:43:13.305" starttime="20190703 23:43:13.304"></status>
+</kw>
+<kw name="Status code is ok" library="TC keyword">
+<arguments>
+<arg>${resp}</arg>
+</arguments>
+<msg timestamp="20190703 23:43:13.305" level="TRACE">Arguments: [ ${resp}=&lt;Response [200]&gt; ]</msg>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${resp.json()}[status][code]</arg>
+<arg>1000</arg>
+</arguments>
+<msg timestamp="20190703 23:43:13.306" level="TRACE">Arguments: [ '1000' | '1000' ]</msg>
+<msg timestamp="20190703 23:43:13.306" level="DEBUG">Argument types are:
+&lt;type 'unicode'&gt;
+&lt;type 'unicode'&gt;</msg>
+<msg timestamp="20190703 23:43:13.306" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20190703 23:43:13.306" starttime="20190703 23:43:13.306"></status>
+</kw>
+<msg timestamp="20190703 23:43:13.306" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20190703 23:43:13.306" starttime="20190703 23:43:13.305"></status>
+</kw>
+<status status="PASS" endtime="20190703 23:43:13.306" critical="yes" starttime="20190703 23:43:13.295"></status>
+</test>
+<test id="s1-t4" name="TC0401 Get most do exam history successful">
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>server</arg>
+<arg>${url}</arg>
+</arguments>
+<msg timestamp="20190703 23:43:13.307" level="TRACE">Arguments: [ 'server' | 'http://localhost:9000' ]</msg>
+<msg timestamp="20190703 23:43:13.307" level="INFO">Creating Session using : alias=server, url=http://localhost:9000, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<msg timestamp="20190703 23:43:13.307" level="DEBUG">Creating session: server</msg>
+<msg timestamp="20190703 23:43:13.307" level="DEBUG">Argument types are:
+&lt;type 'bool'&gt;</msg>
+<msg timestamp="20190703 23:43:13.307" level="TRACE">Return: &lt;requests.sessions.Session object at 0x10b1f5090&gt;</msg>
+<status status="PASS" endtime="20190703 23:43:13.307" starttime="20190703 23:43:13.307"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the
+given `alias`</doc>
+<arguments>
+<arg>server</arg>
+<arg>${get_most_do_exam_history_uri}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20190703 23:43:13.307" level="TRACE">Arguments: [ 'server' | '/api/exam/exam_most' ]</msg>
+<msg timestamp="20190703 23:43:13.309" level="DEBUG">Starting new HTTP connection (1): localhost:9000</msg>
+<msg timestamp="20190703 23:43:13.315" level="DEBUG">http://localhost:9000 "GET /api/exam/exam_most HTTP/1.1" 200 None</msg>
+<msg timestamp="20190703 23:43:13.315" level="INFO">Get Request using : alias=server, uri=/api/exam/exam_most, headers=None json=None</msg>
+<msg timestamp="20190703 23:43:13.315" level="TRACE">Return: &lt;Response [200]&gt;</msg>
+<msg timestamp="20190703 23:43:13.316" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20190703 23:43:13.316" starttime="20190703 23:43:13.307"></status>
+</kw>
+<kw name="Get Dictionary Keys" library="Collections">
+<doc>Returns keys of the given ``dictionary`` as a list.</doc>
+<arguments>
+<arg>${resp.json()}[data]</arg>
+</arguments>
+<assign>
+<var>${key}</var>
+</assign>
+<msg timestamp="20190703 23:43:13.316" level="TRACE">Arguments: [ {'history_most_do': [{'count_all_do': 2,
+                      'exam_id': 5,
+                      'exam_name': '\u0e20\u0e32\u0e29\u0e32\u0e44\u0e17\u0e22'},
+                     {'count_all_do': 2,
+                      'exam_id': 4,
+                      'exam_name': '\u0e04\u0e13\u0e34\u0e15\u0e28\u0e32\u0e2a\u0e15\u0e23\u0e4c'},
+                     {'count_all_do': 2,
+                      'exam_id': 3,
+                      'exam_name': '\u0e04\u0e2d\u0e21\u0e1e\u0e34\u0e27\u0e40\u0e15\u0e2d\u0e23\u0e4c'},
+                     {'count_all_do': 2,
+                      'exam_id': 2,
+                      'exam_name': '\u0e04\u0e33\u0e16\u0e32\u0e21 SQL'},
+                     {'count_all_do': 2,
+                      'exam_id': 1,
+                      'exam_name': '\u0e04\u0e33\u0e16\u0e32\u0e21 Coding'}]} ]</msg>
+<msg timestamp="20190703 23:43:13.317" level="TRACE">Return: ['history_most_do']</msg>
+<msg timestamp="20190703 23:43:13.317" level="INFO">${key} = [u'history_most_do']</msg>
+<status status="PASS" endtime="20190703 23:43:13.317" starttime="20190703 23:43:13.316"></status>
+</kw>
+<kw name="Get Dictionary Keys" library="Collections">
+<doc>Returns keys of the given ``dictionary`` as a list.</doc>
+<arguments>
+<arg>${resp.json()}[data][history_most_do][0]</arg>
+</arguments>
+<assign>
+<var>${key_count}</var>
+</assign>
+<msg timestamp="20190703 23:43:13.317" level="TRACE">Arguments: [ {'count_all_do': 2,
+ 'exam_id': 5,
+ 'exam_name': '\u0e20\u0e32\u0e29\u0e32\u0e44\u0e17\u0e22'} ]</msg>
+<msg timestamp="20190703 23:43:13.317" level="TRACE">Return: ['count_all_do', 'exam_id', 'exam_name']</msg>
+<msg timestamp="20190703 23:43:13.317" level="INFO">${key_count} = [u'count_all_do', u'exam_id', u'exam_name']</msg>
+<status status="PASS" endtime="20190703 23:43:13.317" starttime="20190703 23:43:13.317"></status>
+</kw>
+<kw name="Lists Should Be Equal" library="Collections">
+<doc>Fails if given lists are unequal.</doc>
+<arguments>
+<arg>${key}</arg>
+<arg>${exam_history_most_resp}</arg>
+</arguments>
+<msg timestamp="20190703 23:43:13.318" level="TRACE">Arguments: [ ['history_most_do'] | ['history_most_do'] ]</msg>
+<msg timestamp="20190703 23:43:13.318" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20190703 23:43:13.318" starttime="20190703 23:43:13.318"></status>
+</kw>
+<kw name="Lists Should Be Equal" library="Collections">
+<doc>Fails if given lists are unequal.</doc>
+<arguments>
+<arg>${key_count}</arg>
+<arg>${exam_history_most_count_resp}</arg>
+</arguments>
+<msg timestamp="20190703 23:43:13.318" level="TRACE">Arguments: [ ['count_all_do', 'exam_id', 'exam_name'] | ['count_all_do', 'exam_id', 'exam_name'] ]</msg>
+<msg timestamp="20190703 23:43:13.318" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20190703 23:43:13.318" starttime="20190703 23:43:13.318"></status>
+</kw>
+<kw name="Response status is successful" library="TC keyword">
+<arguments>
+<arg>${resp}</arg>
+</arguments>
+<msg timestamp="20190703 23:43:13.319" level="TRACE">Arguments: [ ${resp}=&lt;Response [200]&gt; ]</msg>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${resp.status_code}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20190703 23:43:13.319" level="TRACE">Arguments: [ 200 | '200' ]</msg>
+<msg timestamp="20190703 23:43:13.319" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<msg timestamp="20190703 23:43:13.319" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20190703 23:43:13.319" starttime="20190703 23:43:13.319"></status>
+</kw>
+<msg timestamp="20190703 23:43:13.319" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20190703 23:43:13.319" starttime="20190703 23:43:13.318"></status>
+</kw>
+<kw name="Status code is ok" library="TC keyword">
+<arguments>
+<arg>${resp}</arg>
+</arguments>
+<msg timestamp="20190703 23:43:13.320" level="TRACE">Arguments: [ ${resp}=&lt;Response [200]&gt; ]</msg>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${resp.json()}[status][code]</arg>
+<arg>1000</arg>
+</arguments>
+<msg timestamp="20190703 23:43:13.320" level="TRACE">Arguments: [ '1000' | '1000' ]</msg>
+<msg timestamp="20190703 23:43:13.320" level="DEBUG">Argument types are:
+&lt;type 'unicode'&gt;
+&lt;type 'unicode'&gt;</msg>
+<msg timestamp="20190703 23:43:13.320" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20190703 23:43:13.320" starttime="20190703 23:43:13.320"></status>
+</kw>
+<msg timestamp="20190703 23:43:13.320" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20190703 23:43:13.320" starttime="20190703 23:43:13.319"></status>
+</kw>
+<status status="PASS" endtime="20190703 23:43:13.320" critical="yes" starttime="20190703 23:43:13.306"></status>
+</test>
+<test id="s1-t5" name="TC0501 Get the latest completed exam successful">
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>server</arg>
+<arg>${url}</arg>
+</arguments>
+<msg timestamp="20190703 23:43:13.321" level="TRACE">Arguments: [ 'server' | 'http://localhost:9000' ]</msg>
+<msg timestamp="20190703 23:43:13.321" level="INFO">Creating Session using : alias=server, url=http://localhost:9000, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<msg timestamp="20190703 23:43:13.321" level="DEBUG">Creating session: server</msg>
+<msg timestamp="20190703 23:43:13.321" level="DEBUG">Argument types are:
+&lt;type 'bool'&gt;</msg>
+<msg timestamp="20190703 23:43:13.321" level="TRACE">Return: &lt;requests.sessions.Session object at 0x10b284910&gt;</msg>
+<status status="PASS" endtime="20190703 23:43:13.321" starttime="20190703 23:43:13.321"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the
+given `alias`</doc>
+<arguments>
+<arg>server</arg>
+<arg>${last_exam_uri}/1</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20190703 23:43:13.322" level="TRACE">Arguments: [ 'server' | '/api/exam/last_exam/1' ]</msg>
+<msg timestamp="20190703 23:43:13.323" level="DEBUG">Starting new HTTP connection (1): localhost:9000</msg>
+<msg timestamp="20190703 23:43:13.327" level="DEBUG">http://localhost:9000 "GET /api/exam/last_exam/1 HTTP/1.1" 200 None</msg>
+<msg timestamp="20190703 23:43:13.327" level="INFO">Get Request using : alias=server, uri=/api/exam/last_exam/1, headers=None json=None</msg>
+<msg timestamp="20190703 23:43:13.327" level="TRACE">Return: &lt;Response [200]&gt;</msg>
+<msg timestamp="20190703 23:43:13.327" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20190703 23:43:13.327" starttime="20190703 23:43:13.322"></status>
+</kw>
+<kw name="Get Dictionary Keys" library="Collections">
+<doc>Returns keys of the given ``dictionary`` as a list.</doc>
+<arguments>
+<arg>${resp.json()}[data]</arg>
+</arguments>
+<assign>
+<var>${exam_count_key}</var>
+</assign>
+<msg timestamp="20190703 23:43:13.328" level="TRACE">Arguments: [ {'count_do_exam': 5,
+ 'count_exam': 10,
+ 'last_do': [{'exam_id': 1,
+              'exam_name': '\u0e04\u0e33\u0e16\u0e32\u0e21 Coding',
+              'timestamp': '2019-06-26T04:38:44.000+0000'},
+             {'exam_id': 2,
+              'exam_name': '\u0e04\u0e33\u0e16\u0e32\u0e21 SQL',
+              'timestamp': '2019-06-26T07:28:38.000+0000'},
+             {'exam_id': 3,
+              'exam_name': '\u0e04\u0e2d\u0e21\u0e1e\u0e34\u0e27\u0e40\u0e15\u0e2d\u0e23\u0e4c',
+              'timestamp': '2019-06-26T07:37:22.000+0000'},
+             {'exam_id': 4,
+              'exam_name': '\u0e04\u0e13\u0e34\u0e15\u0e28\u0e32\u0e2a\u0e15\u0e23\u0e4c',
+              'timestamp': '2019-06-24T07:37:22.000+0000'},
+             {'exam_id': 5,
+              'exam_name': '\u0e20\u0e32\u0e29\u0e32\u0e44\u0e17\u0e22',
+              'timestamp': '2019-06-25T07:37:22.000+0000'}]} ]</msg>
+<msg timestamp="20190703 23:43:13.329" level="TRACE">Return: ['count_do_exam', 'count_exam', 'last_do']</msg>
+<msg timestamp="20190703 23:43:13.329" level="INFO">${exam_count_key} = [u'count_do_exam', u'count_exam', u'last_do']</msg>
+<status status="PASS" endtime="20190703 23:43:13.329" starttime="20190703 23:43:13.328"></status>
+</kw>
+<kw name="Get Dictionary Keys" library="Collections">
+<doc>Returns keys of the given ``dictionary`` as a list.</doc>
+<arguments>
+<arg>${resp.json()}[data][last_do][0]</arg>
+</arguments>
+<assign>
+<var>${exam_key}</var>
+</assign>
+<msg timestamp="20190703 23:43:13.329" level="TRACE">Arguments: [ {'exam_id': 1,
+ 'exam_name': '\u0e04\u0e33\u0e16\u0e32\u0e21 Coding',
+ 'timestamp': '2019-06-26T04:38:44.000+0000'} ]</msg>
+<msg timestamp="20190703 23:43:13.330" level="TRACE">Return: ['exam_id', 'exam_name', 'timestamp']</msg>
+<msg timestamp="20190703 23:43:13.330" level="INFO">${exam_key} = [u'exam_id', u'exam_name', u'timestamp']</msg>
+<status status="PASS" endtime="20190703 23:43:13.330" starttime="20190703 23:43:13.329"></status>
+</kw>
+<kw name="Lists Should Be Equal" library="Collections">
+<doc>Fails if given lists are unequal.</doc>
+<arguments>
+<arg>${exam_count_key}</arg>
+<arg>${exam_latest_count_resp}</arg>
+</arguments>
+<msg timestamp="20190703 23:43:13.331" level="TRACE">Arguments: [ ['count_do_exam', 'count_exam', 'last_do'] | ['count_do_exam', 'count_exam', 'last_do'] ]</msg>
+<msg timestamp="20190703 23:43:13.331" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20190703 23:43:13.331" starttime="20190703 23:43:13.330"></status>
+</kw>
+<kw name="Lists Should Be Equal" library="Collections">
+<doc>Fails if given lists are unequal.</doc>
+<arguments>
+<arg>${exam_key}</arg>
+<arg>${exam_latest_resp}</arg>
+</arguments>
+<msg timestamp="20190703 23:43:13.332" level="TRACE">Arguments: [ ['exam_id', 'exam_name', 'timestamp'] | ['exam_id', 'exam_name', 'timestamp'] ]</msg>
+<msg timestamp="20190703 23:43:13.332" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20190703 23:43:13.332" starttime="20190703 23:43:13.331"></status>
+</kw>
+<kw name="Response status is successful" library="TC keyword">
+<arguments>
+<arg>${resp}</arg>
+</arguments>
+<msg timestamp="20190703 23:43:13.333" level="TRACE">Arguments: [ ${resp}=&lt;Response [200]&gt; ]</msg>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${resp.status_code}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20190703 23:43:13.333" level="TRACE">Arguments: [ 200 | '200' ]</msg>
+<msg timestamp="20190703 23:43:13.333" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<msg timestamp="20190703 23:43:13.333" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20190703 23:43:13.333" starttime="20190703 23:43:13.333"></status>
+</kw>
+<msg timestamp="20190703 23:43:13.333" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20190703 23:43:13.333" starttime="20190703 23:43:13.332"></status>
+</kw>
+<kw name="Status code is ok" library="TC keyword">
+<arguments>
+<arg>${resp}</arg>
+</arguments>
+<msg timestamp="20190703 23:43:13.334" level="TRACE">Arguments: [ ${resp}=&lt;Response [200]&gt; ]</msg>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${resp.json()}[status][code]</arg>
+<arg>1000</arg>
+</arguments>
+<msg timestamp="20190703 23:43:13.334" level="TRACE">Arguments: [ '1000' | '1000' ]</msg>
+<msg timestamp="20190703 23:43:13.334" level="DEBUG">Argument types are:
+&lt;type 'unicode'&gt;
+&lt;type 'unicode'&gt;</msg>
+<msg timestamp="20190703 23:43:13.334" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20190703 23:43:13.334" starttime="20190703 23:43:13.334"></status>
+</kw>
+<msg timestamp="20190703 23:43:13.334" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20190703 23:43:13.334" starttime="20190703 23:43:13.334"></status>
+</kw>
+<status status="PASS" endtime="20190703 23:43:13.335" critical="yes" starttime="20190703 23:43:13.320"></status>
+</test>
+<status status="PASS" endtime="20190703 23:43:13.335" starttime="20190703 23:43:13.167"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="0" pass="5">Critical Tests</stat>
+<stat fail="0" pass="5">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat fail="0" id="s1" name="Mock Testing" pass="5">Mock Testing</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

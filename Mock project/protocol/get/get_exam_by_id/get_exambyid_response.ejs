@@ -1,0 +1,102 @@
+{
+    "is": 
+  {
+        "statusCode": 200,
+        "headers": 
+        {
+            "Content-Type": "application/json"
+        },
+        "body": 
+        {
+           "status": {
+        "code": "1000",
+        "message": "success"
+    },
+    "data": {
+        "exam_id": 1,
+        "exam_name": "คำถาม Coding",
+        "questions": [
+            {
+                "question": {
+                    "question_text": "หลักการตั้งชื่อตัวแปรมีอะไรบ้าง ?",
+                    "question_pic": null,
+                    "question_type": "muit"
+                },
+                "choices": [
+                    {
+                        "choice_text": "Camel case",
+                        "choice_pic": null,
+                        "choice_score": 1
+                    },
+                    {
+                        "choice_text": "Turtle case",
+                        "choice_pic": null,
+                        "choice_score": -1
+                    },
+                    {
+                        "choice_text": "Falcon case",
+                        "choice_pic": null,
+                        "choice_score": -1
+                    },
+                    {
+                        "choice_text": "Shark case",
+                        "choice_pic": null,
+                        "choice_score": -1
+                    },
+                    {
+                        "choice_text": "Snake case",
+                        "choice_pic": null,
+                        "choice_score": 1
+                    }
+                ]
+            },
+            {
+                "question": {
+                    "question_text": "หลักการเขียน if แบบย่อที่ถูกต้อง",
+                    "question_pic": null,
+                    "question_type": "single"
+                },
+                "choices": [
+                    {
+                        "choice_text": "if(x < 2) @ return true : return false;",
+                        "choice_pic": null,
+                        "choice_score": 1
+                    },
+                    {
+                        "choice_text": "if(x < 2) ! return true : return false",
+                        "choice_pic": null,
+                        "choice_score": 0
+                    },
+                    {
+                        "choice_text": "if(x < 2) ? return true : return false;",
+                        "choice_pic": null,
+                        "choice_score": 0
+                    },
+                    {
+                        "choice_text": "if(x < 2) ? return true ; return false;",
+                        "choice_pic": null,
+                        "choice_score": 0
+                    }
+                ]
+            }
+        ]
+    }
+      }
+  },
+  "_behaviors": {
+    "copy": [
+      {
+        "from" : { "query": "id" },
+        "into" : "${id}",
+        "using": {
+          "method" : "regex",
+          "selector" : ".*$"
+        }
+      }
+   ]
+ }
+ 	
+}
+       
+
+ 

@@ -1,0 +1,45 @@
+{
+        "imposters": [
+                {
+                        "port": "9000",
+                        "protocol": "http",
+                        "stubs": [
+                                {
+                                        "predicates": [ <% include protocol/get/get_user_last_do_exam/get_userlast_predicates.ejs %> ],
+                                        "responses": [ <% include protocol/get/get_user_last_do_exam/get_userlast_response.ejs %> ]
+                                },
+                                {
+                                        "predicates": [ <% include protocol/get/get_all_history_user_do/get_history_predicates.ejs %> ],
+                                        "responses": [ <% include protocol/get/get_all_history_user_do/get_history_response.ejs %> ]
+                                },
+                                {
+                                        "predicates": [ <% include protocol/get/get_most_do_exam_history/get_examhistory_predicates.ejs %> ],
+                                        "responses": [ <% include protocol/get/get_most_do_exam_history/get_examhistory_response.ejs %> ]
+                                },
+                                {
+                                        "predicates": [ <% include protocol/get/get_exam_by_id/get_exambyid_predicates.ejs %> ],
+                                        "responses": [ <% include protocol/get/get_exam_by_id/get_exambyid_response.ejs %> ]
+                                },
+                                {
+                                        "predicates": [ <% include protocol/get/get_exam_list/get_exam_list_predicate.ejs %> ],
+                                        "responses": [ <% include protocol/get/get_exam_list/get_exam_list_response.ejs %> ]
+                                },
+				{
+					"predicates": [ <% include protocol/get/get_user_id_from_token/get_id_from_token_predicate.ejs %>
+					],
+					"responses": [ <% include protocol/get/get_user_id_from_token/get_id_from_token_response.ejs %>
+					]
+				},
+				{
+					"predicates": [ <% include protocol/get/get_user_id_from_token/get_id_from_token_predicate_fail.ejs %>
+					],
+					"responses": [ <% include protocol/get/get_user_id_from_token/get_id_from_token_response_fail.ejs %>
+					]
+				},
+                                {
+                                        "responses": [ <% include error.ejs %> ]
+                                }
+                        ]
+                }
+        ]
+}
