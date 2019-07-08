@@ -59,6 +59,11 @@ TC0204 Get the entire user's history with incorrect syntax
     ${resp}=    Get Request    server    ${exam_history_uri}/u
     Bad Request    ${resp}
 
+TC0205 Get the entire user's history with the path that contains space
+    Create Session    server    ${url}
+    ${resp}=    Get Request    server    ${exam_history_uri}/${space}
+    Bad Request    ${resp}
+
 TC0301 Get all list of exams successful
     Create Session    server    ${url}
     ${resp}=    Get Request    server    ${list_exam_uri}
@@ -90,11 +95,6 @@ TC0403 Get most do exam history with incorrect HTTP method
      Create Session    server    ${url}
      ${resp}=    Post Request    server    ${get_most_do_exam_history_uri}
      Method Not Allow    ${resp}
-
-TC0404 Get most do exam history with incorrect syntax
-#     Create Session    server    ${url}
-#     ${resp}=    Get Request    server    ${get_most_do_exam_history_uri}
-#     Bad Request    ${resp}
 
 TC0501 Get the recent completed exam successful
     Create Session    server    ${url}
