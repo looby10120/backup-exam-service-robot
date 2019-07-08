@@ -11,7 +11,7 @@ TC0101 Get exam by ID successful
     ${resp}=    Get Request    server    ${get_exam_by_ID_uri}/1
     Request Success    ${resp}
 
-TC0102 Get exam by ID with the path that does not exist
+TC0102 Get exam by ID with the resource that does not exist
     #fail -> the requested resource could not be found but may be available in the future.
     Create Session    server    ${url}
     ${resp}=    Get Request    server    ${get_exam_by_ID_uri}/99999999
@@ -29,12 +29,22 @@ TC0104 Get exam by ID with incorrect syntax
     ${resp}=    Get Request    server    ${get_exam_by_ID_uri}/u
     Bad Request    ${resp}
 
+TC0105 Get exam by ID with the path that contains space
+    Create Session    server    ${url}
+    ${resp}=    Get Request    server    ${get_exam_by_ID_uri}/${space}
+    Bad Request    ${resp}
+
+TC0106 Get exam by ID with a wrong path
+    Create Session    server    ${url}
+    ${resp}=    Get Request    server    ${get_exam_by_ID_uri}/
+    Wrong URL Path    ${resp}
+
 TC0201 Get the entire user's history successful
     Create Session    server    ${url}
     ${resp}=    Get Request    server    ${exam_history_uri}/1
     Request Success    ${resp}
 
-TC0202 Get the entire user's history with the path that does not exist
+TC0202 Get the entire user's history with the resource that does not exist
     Create Session    server    ${url}
     ${resp}=    Get Request    server    ${exam_history_uri}/99999999
     Resource Not Available    ${resp}
@@ -54,16 +64,16 @@ TC0301 Get all list of exams successful
     ${resp}=    Get Request    server    ${list_exam_uri}
     Request Success    ${resp}
 
-TC0303 Get all list of exams with incorrect HTTP method
+TC0302 Get all list of exams with incorrect HTTP method
     Create Session    server    ${url}
     ${resp}=    Post Request    server    ${list_exam_uri}
     Method Not Allow    ${resp}
 
-TC0304 Get all list of exams with incorrect syntax
-    #fail -> malformed request syntax by using string instead of integer
+TC0303 Get all list of exams with a wrong path
+    #fail -> the URL path does not exist
     Create Session    server    ${url}
     ${resp}=    Get Request    server    ${list_exam_uri}/u
-    Bad Request    ${resp}
+    Wrong URL Path    ${resp}
 
 TC0401 Get most do exam history successful
     #success -> response 200
@@ -71,15 +81,15 @@ TC0401 Get most do exam history successful
     ${resp}=    Get Request    server    ${get_most_do_exam_history_uri}
     Request Success    ${resp}
 
-TC0402 Get most do exam history with the path that does not exist
-#     Create Session    server    ${url}
-#     ${resp}=    Get Request    server    ${get_most_do_exam_history_uri}
-#     Resource Not Available    ${resp}
+TC0402 Get most do exam history with the wrong path
+     Create Session    server    ${url}
+     ${resp}=    Get Request    server    ${get_most_do_exam_history_uri}/3
+     Wrong URL Path    ${resp}
 
 TC0403 Get most do exam history with incorrect HTTP method
-#     Create Session    server    ${url}
-#     ${resp}=    Post Request    server    ${get_most_do_exam_history_uri}
-#     Method Not Allow    ${resp}
+     Create Session    server    ${url}
+     ${resp}=    Post Request    server    ${get_most_do_exam_history_uri}
+     Method Not Allow    ${resp}
 
 TC0404 Get most do exam history with incorrect syntax
 #     Create Session    server    ${url}
@@ -91,7 +101,7 @@ TC0501 Get the recent completed exam successful
     ${resp}=    Get Request    server    ${last_exam_uri}/1
     Request Success    ${resp}
 
-TC0502 Get the recent completed exam with the path that does not exist
+TC0502 Get the recent completed exam with the resource that does not exist
     Create Session    server    ${url}
     ${resp}=    Get Request    server    ${last_exam_uri}/99999999
     Resource Not Available    ${resp}
@@ -106,34 +116,7 @@ TC0504 Get the recent completed exam with incorrect syntax
     ${resp}=    Get Request    server    ${last_exam_uri}/u
     Bad Request    ${resp}
 
-TC0601 Get user id from token successful
-    # Create Session    server    ${url}
-    # ${token}=    set variable    Bearer 1234567890
-    # ${headers}=    create dictionary
-    # ...    accessToken=${token}
-    # ${resp}=    Get Request    server    ${get_id_from_token}    headers=${headers}
-    # Request Success    ${resp}
-
-TC0602 Get user id from token with the path that does not exist
-    # Create Session    server    ${url}
-    # ${token}=    set variable    Bearer 314424i
-    # ${headers}=    create dictionary
-    # ...    accessToken=${token}
-    #${resp}=    Get Request    server    ${get_id_from_token}    headers=${headers}
-    #Resource Not Available    ${resp}
-
-TC0603 Get user id from token with incorrect HTTP method
-#     Create Session    server    ${url}
-#     ${token}=    set variable    Bearer 314424i
-#     ${headers}=    create dictionary
-#     ...    accessToken=${token}
-#     ${resp}=    Get Request    server    ${get_id_from_token}    headers=${headers}
-#     Method Not Allow    ${resp}
-
-TC0604 Get user id from token with incorrect syntax
-#     Create Session    server    ${url}
-#     # ${token}=    set variable    Bearer 314424i
-#     # ${headers}=    create dictionary
-#     # ...    accessToken=${token}
-#     #${resp}=    Get Request    server    ${get_id_from_token}    headers=${headers}
-      # Bad Request    ${resp}
+TC0505 Get the recent completed exam with the path that contains space
+    Create Session    server    ${url}
+    ${resp}=    Get Request    server    ${last_exam_uri}/${space}
+    Bad Request    ${resp}

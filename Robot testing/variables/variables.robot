@@ -1,6 +1,6 @@
 *** Variables ***
 #${url}=    http://localhost:9000
-${url}=    http://192.168.109.167:8085
+${url}=    http://192.168.109.95:8085
 
 #TC0101 Get exam by ID successful
 @{exam_by_id_resp}    exam_id    exam_name    questions
