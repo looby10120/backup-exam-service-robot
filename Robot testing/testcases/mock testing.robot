@@ -34,9 +34,19 @@ TC0105 Get exam by ID with the path that contains space
     ${resp}=    Get Request    server    ${get_exam_by_ID_uri}/${space}
     Bad Request    ${resp}
 
-TC0106 Get exam by ID with a wrong path
+TC0106 Get exam by ID with that does not contain the exam ID
     Create Session    server    ${url}
     ${resp}=    Get Request    server    ${get_exam_by_ID_uri}/
+    Bad Request    ${resp}
+
+TC0107 Get exam by ID with a wrong path (wrong URI but existing ID)
+    Create Session    server    ${url}
+    ${resp}=    Get Request    server    /api/exams/3
+    Wrong URL Path    ${resp}
+
+TC0108 Get exam by ID with a wrong path (wrong URI and no ID)
+    Create Session    server    ${url}
+    ${resp}=    Get Request    server    /api/exams/
     Wrong URL Path    ${resp}
 
 TC0201 Get the entire user's history successful
@@ -80,6 +90,11 @@ TC0303 Get all list of exams with a wrong path
     ${resp}=    Get Request    server    ${list_exam_uri}/u
     Wrong URL Path    ${resp}
 
+TC0304 Get all list of exams with a wrong URI path
+    Create Session    server    ${url}
+    ${resp}=    Post Request    server    /api/exam/list_exams
+    Wrong URL Path    ${resp}
+
 TC0401 Get most do exam history successful
     #success -> response 200
     Create Session    server    ${url}
@@ -95,6 +110,11 @@ TC0403 Get most do exam history with incorrect HTTP method
      Create Session    server    ${url}
      ${resp}=    Post Request    server    ${get_most_do_exam_history_uri}
      Method Not Allow    ${resp}
+
+TC0404 Get most do exam history with the wrong path
+    Create Session    server    ${url}
+    ${resp}=    Get Request    server    /api/exam/exam_mosts
+    Wrong URL Path    ${resp}
 
 TC0501 Get the recent completed exam successful
     Create Session    server    ${url}
