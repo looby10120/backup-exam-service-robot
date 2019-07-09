@@ -5,36 +5,118 @@
                         "protocol": "http",
                         "stubs": [
                                 {
-                                        "predicates": [ <% include protocol/get/get_user_last_do_exam/get_userlast_predicates.ejs %> ],
-                                        "responses": [ <% include protocol/get/get_user_last_do_exam/get_userlast_response.ejs %> ]
+                                        "predicates": [ <% include protocol/get/get_user_last_do_exam/get_user_last_do_exam_success/get_userlast_predicates.ejs %> ],
+                                        "responses": [ <% include protocol/get/get_user_last_do_exam/get_user_last_do_exam_success/get_userlast_response.ejs %> ]
+                                },
+
+
+                                {
+                                        "predicates": [ <% include protocol/get/get_user_last_do_exam/get_user_last_do_exam_fail/Resource_not_found_in_database/get_user_last_do_exam_predicates_fail.ejs %> ],
+                                        "responses": [ <% include protocol/get/get_user_last_do_exam/get_user_last_do_exam_fail/Resource_not_found_in_database/get_user_last_do_exam_response_fail.ejs %> ]
                                 },
                                 {
-                                        "predicates": [ <% include protocol/get/get_all_history_user_do/get_history_predicates.ejs %> ],
-                                        "responses": [ <% include protocol/get/get_all_history_user_do/get_history_response.ejs %> ]
+                                        "predicates": [ <% include protocol/get/get_user_last_do_exam/get_user_last_do_exam_fail/Have_space/get_user_last_do_exam_predicates_fail.ejs %> ],
+                                        "responses": [ <% include protocol/get/get_user_last_do_exam/get_user_last_do_exam_fail/Have_space/get_user_last_do_exam_response_fail.ejs %> ]
                                 },
+                                {
+                                        "predicates": [ <% include protocol/get/get_user_last_do_exam/get_user_last_do_exam_fail/Have_space/get_user_last_do_exam_predicates_fail_only_space.ejs %> ],
+                                        "responses": [ <% include protocol/get/get_user_last_do_exam/get_user_last_do_exam_fail/Have_space/get_user_last_do_exam_response_fail_only_space.ejs %> ]
+                                },
+                                {
+                                        "predicates": [ <% include protocol/get/get_user_last_do_exam/get_user_last_do_exam_fail/Wrong_method/get_user_last_do_exam_predicates_fail.ejs %> ],
+                                        "responses": [ <% include protocol/get/get_user_last_do_exam/get_user_last_do_exam_fail/Wrong_method/get_user_last_do_exam_response_fail.ejs %> ]
+                                },
+                                {
+                                        "predicates": [ <% include protocol/get/get_user_last_do_exam/get_user_last_do_exam_fail/Wrong_Type/get_user_last_do_exam_predicates_fail.ejs %> ],
+                                        "responses": [ <% include protocol/get/get_user_last_do_exam/get_user_last_do_exam_fail/Wrong_Type/get_user_last_do_exam_response_fail.ejs %> ]
+                                },
+                                {
+                                        "predicates": [ <% include protocol/get/get_user_last_do_exam/get_user_last_do_exam_fail/Wrong_Type/get_user_last_do_exam_predicates_fail_Int_to_long.ejs %> ],
+                                        "responses": [ <% include protocol/get/get_user_last_do_exam/get_user_last_do_exam_fail/Wrong_Type/get_user_last_do_exam_response_fail_Int_to_long.ejs %> ]
+                                },
+
+
+
+
+                                {
+                                        "predicates": [ <% include protocol/get/get_all_history_user_do/get_all_history_user_do_success/get_history_predicates.ejs %> ],
+                                        "responses": [ <% include protocol/get/get_all_history_user_do/get_all_history_user_do_success/get_history_response.ejs %> ]
+                                },
+
+
+                                {
+                                        "predicates": [ <% include protocol/get/get_all_history_user_do/get_all_history_user_do_fail/Resource_not_found_in_database/get_all_history_user_do_predicates_fail.ejs %> ],
+                                        "responses": [ <% include protocol/get/get_all_history_user_do/get_all_history_user_do_fail/Resource_not_found_in_database/get_all_history_user_do_response_fail.ejs %> ]
+                                },
+                                {
+                                        "predicates": [ <% include protocol/get/get_all_history_user_do/get_all_history_user_do_fail/Have_space/get_all_history_user_do_predicates_fail.ejs %> ],
+                                        "responses": [ <% include protocol/get/get_all_history_user_do/get_all_history_user_do_fail/Have_space/get_all_history_user_do_response_fail.ejs %> ]
+                                },
+                                {
+                                        "predicates": [ <% include protocol/get/get_all_history_user_do/get_all_history_user_do_fail/Wrong_method/get_all_history_user_do_predicates_fail.ejs %> ],
+                                        "responses": [ <% include protocol/get/get_all_history_user_do/get_all_history_user_do_fail/Wrong_method/get_all_history_user_do_response_fail.ejs %> ]
+                                },
+                                {
+                                        "predicates": [ <% include protocol/get/get_all_history_user_do/get_all_history_user_do_fail/Wrong_Type/get_all_history_user_do_predicates_fail.ejs %> ],
+                                        "responses": [ <% include protocol/get/get_all_history_user_do/get_all_history_user_do_fail/Wrong_Type/get_all_history_user_do_response_fail.ejs %> ]
+                                },
+                                {
+                                        "predicates": [ <% include protocol/get/get_all_history_user_do/get_all_history_user_do_fail/Wrong_Type/get_all_history_user_do_predicates_fail_Int_to_long.ejs %> ],
+                                        "responses": [ <% include protocol/get/get_all_history_user_do/get_all_history_user_do_fail/Wrong_Type/get_all_history_user_do_response_fail_Int_to_long.ejs %> ]
+                                },
+
+
+
+
                                 {
                                         "predicates": [ <% include protocol/get/get_most_do_exam_history/get_examhistory_predicates.ejs %> ],
                                         "responses": [ <% include protocol/get/get_most_do_exam_history/get_examhistory_response.ejs %> ]
                                 },
+
+
+
+
                                 {
-                                        "predicates": [ <% include protocol/get/get_exam_by_id/get_exambyid_predicates.ejs %> ],
-                                        "responses": [ <% include protocol/get/get_exam_by_id/get_exambyid_response.ejs %> ]
+                                        "predicates": [ <% include protocol/get/get_exam_by_id/get_exam_by_id_success/get_exambyid_predicates.ejs %> ],
+                                        "responses": [ <% include protocol/get/get_exam_by_id/get_exam_by_id_success/get_exambyid_response.ejs %> ]
                                 },
+
+
+                                {
+                                        "predicates": [ <% include protocol/get/get_exam_by_id/get_exam_by_id_fail/Resource_not_found_in_database/get_exambyid_predicates_fail.ejs %> ],
+                                        "responses": [ <% include protocol/get/get_exam_by_id/get_exam_by_id_fail/Resource_not_found_in_database/get_exambyid_response_fail.ejs %> ]
+                                },
+                                {
+                                        "predicates": [ <% include protocol/get/get_exam_by_id/get_exam_by_id_fail/Have_space/get_exambyid_predicates_fail.ejs %> ],
+                                        "responses": [ <% include protocol/get/get_exam_by_id/get_exam_by_id_fail/Have_space/get_exambyid_response_fail.ejs %> ]
+                                },
+                                {
+                                        "predicates": [ <% include protocol/get/get_exam_by_id/get_exam_by_id_fail/Wrong_method/get_exambyid_predicates_fail.ejs %> ],
+                                        "responses": [ <% include protocol/get/get_exam_by_id/get_exam_by_id_fail/Wrong_method/get_exambyid_response_fail.ejs %> ]
+                                },
+                                {
+                                        "predicates": [ <% include protocol/get/get_exam_by_id/get_exam_by_id_fail/Wrong_Type/get_exambyid_predicates_fail.ejs %> ],
+                                        "responses": [ <% include protocol/get/get_exam_by_id/get_exam_by_id_fail/Wrong_Type/get_exambyid_response_fail.ejs %> ]
+                                },
+                                {
+                                        "predicates": [ <% include protocol/get/get_exam_by_id/get_exam_by_id_fail/Wrong_Type/get_exambyid_predicates_fail_Int_to_long.ejs %> ],
+                                        "responses": [ <% include protocol/get/get_exam_by_id/get_exam_by_id_fail/Wrong_Type/get_exambyid_response_fail_Int_to_long.ejs %> ]
+                                },
+
+
+
+                                
                                 {
                                         "predicates": [ <% include protocol/get/get_exam_list/get_exam_list_predicate.ejs %> ],
                                         "responses": [ <% include protocol/get/get_exam_list/get_exam_list_response.ejs %> ]
                                 },
 				{
-					"predicates": [ <% include protocol/get/get_user_id_from_token/get_id_from_token_predicate.ejs %>
-					],
-					"responses": [ <% include protocol/get/get_user_id_from_token/get_id_from_token_response.ejs %>
-					]
+					"predicates": [ <% include protocol/get/get_user_id_from_token/get_id_from_token_predicate.ejs %> ],
+					"responses": [ <% include protocol/get/get_user_id_from_token/get_id_from_token_response.ejs %> ]
 				},
 				{
-					"predicates": [ <% include protocol/get/get_user_id_from_token/get_id_from_token_predicate_fail.ejs %>
-					],
-					"responses": [ <% include protocol/get/get_user_id_from_token/get_id_from_token_response_fail.ejs %>
-					]
+					"predicates": [ <% include protocol/get/get_user_id_from_token/get_id_from_token_predicate_fail.ejs %> ],
+					"responses": [ <% include protocol/get/get_user_id_from_token/get_id_from_token_response_fail.ejs %> ]
 				},
                                 {
                                         "responses": [ <% include error.ejs %> ]
