@@ -118,6 +118,12 @@
 					"predicates": [ <% include protocol/get/get_user_id_from_token/get_id_from_token_predicate_fail.ejs %> ],
 					"responses": [ <% include protocol/get/get_user_id_from_token/get_id_from_token_response_fail.ejs %> ]
 				},
+				{
+					"predicates": [ <% include protocol/post/create_history/create_history_predicate.ejs %> ],
+					"responses": [ <% include protocol/post/create_history/create_history_response.ejs %> ]
+				},
+
+                                
                                 {
                                         "responses": [ <% include error.ejs %> ]
                                 }

@@ -1,0 +1,19 @@
+{
+    "and": [
+        {
+            "equals": {
+                "path": "/api/exam/create_history",
+                "method": "POST"
+            }
+        },
+        {
+            "matches": {
+                "body": {
+                    "historyExamId": 1,
+                    "historyEmployeeId": "89000",
+                    "historyScore": 10
+                }
+            }
+        }
+    ]
+}
