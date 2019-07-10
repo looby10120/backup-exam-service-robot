@@ -46,7 +46,7 @@ TC0202 Get the entire user's history with the resource that does not exist
 TC0203 Get the entire user's history with incorrect syntax
     Create Session    server    ${url}
     ${resp}=    Get Request    server    ${exam_history_uri}/u
-    Wrong URL Path    ${resp}
+    Resource Not Available    ${resp}
 
 TC0204 Get the entire user's history with the path that contains space
     Create Session    server    ${url}
@@ -98,9 +98,50 @@ TC0502 Get the recent completed exam with the resource that does not exist
 TC0503 Get the recent completed exam with incorrect syntax
     Create Session    server    ${url}
     ${resp}=    Get Request    server    ${last_exam_uri}/u
-    Wrong URL Path    ${resp}
+    Resource Not Available    ${resp}
 
 TC0504 Get the recent completed exam with the path that contains space
     Create Session    server    ${url}
-    ${resp}=    Get Request    server    ${last_exam_uri}/${space}
+    ${resp}=    Get Request    server    ${last_exam_uri}/${space}3
     Wrong URL Path    ${resp}
+
+TC0601 Post the user's score successful
+    Create Session    server    ${url}
+    ${body}=    Create Dictionary    historyExamId=1
+    ...    historyEmployeeId="1"
+    ...    historyScore=10
+    ${header}=    Create Dictionary    Content-Type=application/json
+    ${resp}=    Post request    server    ${create_history_uri}    headers=${header}    data=${body}
+    Created success    ${resp}
+
+TC0602 Post the user's score without header
+    Create Session    server    ${url}
+    ${body}=    Create Dictionary    historyExamId=1
+    ...    historyEmployeeId="1"
+    ...    historyScore=10
+    ${resp}=    Post request    server    ${create_history_uri}    data=${body}
+    Bad Request    ${resp}
+
+TC0603 Post the user's score without body
+    Create Session    server    ${url}
+    ${header}=    Create Dictionary    Content-Type=application/json
+    ${resp}=    Post request    server    ${create_history_uri}    headers=${header}
+    Bad Request    ${resp}
+
+TC0604 Post the user's score with the wrong type of body
+    Create Session    server    ${url}
+    ${body}=    Create Dictionary    historyExamId=string
+    ...    historyEmployeeId=string
+    ...    historyScore=string
+    ${header}=    Create Dictionary    Content-Type=application/json
+    ${resp}=    Post request    server    ${create_history_uri}    headers=${header}    data=${body}
+    Bad Request    ${resp}
+
+TC0605 Post the user's score with a wrong path
+    Create Session    server    ${url}
+    ${body}=    Create Dictionary    historyExamId=string
+    ...    historyEmployeeId=string
+    ...    historyScore=string
+    ${header}=    Create Dictionary    Content-Type=application/json
+    ${resp}=    Post request    server    ${create_history_uri}/history    headers=${header}    data=${body}
+    Wrong URL Path   ${resp}

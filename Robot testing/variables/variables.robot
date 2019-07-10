@@ -19,11 +19,15 @@ ${url}=    http://192.168.109.95:8085
 @{question_content_resp}    question    question_text    question_pic    question_type
 @{choice_content_resp}    choice_text    choice_pic    score
 
-
-
-${exam_history_uri}=    /api/exam/history
-${list_exam_uri}=    /api/exam/list_exam
-${last_exam_uri}=    /api/exam/last_exam
+#TC0101 - TC01xx
 ${get_exam_by_ID_uri}=    /api/exam
+#TC0201 - TC02xx
+${exam_history_uri}=    /api/exam/history
+#TC0301 - TC03xx
+${list_exam_uri}=    /api/exam/list_exam
+#TC0401 - TC04xx
 ${get_most_do_exam_history_uri}=    /api/exam/exam_most
-${get_id_from_token}=    /api/auth/verify
+#TC0501 - TC05xx
+${last_exam_uri}=    /api/exam/last_exam
+#TC0601 - TC06xx
+${create_history_uri}=    /api/exam/create_history
