@@ -118,9 +118,39 @@
 					"predicates": [ <% include protocol/get/get_user_id_from_token/get_id_from_token_predicate_fail.ejs %> ],
 					"responses": [ <% include protocol/get/get_user_id_from_token/get_id_from_token_response_fail.ejs %> ]
 				},
+
+
 				{
-					"predicates": [ <% include protocol/post/create_history/create_history_predicate.ejs %> ],
-					"responses": [ <% include protocol/post/create_history/create_history_response.ejs %> ]
+					"predicates": [ <% include protocol/post/create_history/create_success/create_history_predicate.ejs %> ],
+					"responses": [ <% include protocol/post/create_history/create_success/create_history_response.ejs %> ]
+				},
+                                {
+					"predicates": [ <% include protocol/post/create_history/create_success/create_history_predicate_1.ejs %> ],
+					"responses": [ <% include protocol/post/create_history/create_success/create_history_response.ejs %> ]
+				},
+				{
+					"predicates": [ <% include protocol/post/create_history/create_fail/bad_request/create_history_predicate_fail_header.ejs %> ],
+					"responses": [ <% include protocol/post/create_history/create_fail/bad_request/create_history_response_fail_badRequest.ejs %> ]
+				},
+				{
+					"predicates": [ <% include protocol/post/create_history/create_fail/bad_request/create_history_predicate_fail_missing_body_1.ejs %> ],
+					"responses": [ <% include protocol/post/create_history/create_fail/bad_request/create_history_response_fail_badRequest.ejs %> ]
+				},
+				{
+					"predicates": [ <% include protocol/post/create_history/create_fail/wrong_path/create_history_predicate_fail_path.ejs %> ],
+					"responses": [ <% include protocol/post/create_history/create_fail/wrong_path/create_history_response_fail_wrong_path.ejs %> ]
+				},
+				{
+					"predicates": [ <% include protocol/post/create_history/create_fail/wrong_path/create_history_predicate_fail_path_1.ejs %> ],
+					"responses": [ <% include protocol/post/create_history/create_fail/wrong_path/create_history_response_fail_wrong_path.ejs %> ]
+				},
+				{
+					"predicates": [ <% include protocol/post/create_history/create_fail/bad_request/create_history_predicate_fail_missing_body.ejs %> ],
+					"responses": [ <% include protocol/post/create_history/create_fail/bad_request/create_history_response_fail_badRequest.ejs %> ]
+				},
+				{
+					"predicates": [ <% include protocol/post/create_history/create_fail/bad_request/create_history_predicate_fail_wrong_dataType.ejs %> ],
+					"responses": [ <% include protocol/post/create_history/create_fail/bad_request/create_history_response_fail_badRequest.ejs %> ]
 				},
 
                                 

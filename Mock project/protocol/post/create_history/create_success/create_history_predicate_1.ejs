@@ -1,0 +1,22 @@
+{
+    "and": [
+        {
+            "equals": {
+                "path": "/api/exam/create_history/",
+                "method": "POST",
+                "headers": {
+                    "Content-Type" : "application/json"
+                }
+            }
+        },
+        {
+            "matches": {
+                "body": {
+                    "historyExamId": "[0-9]",
+                    "historyEmployeeId": "[0-9]",
+                    "historyScore": "[0-9]"
+                }
+            }
+        }
+    ]
+}

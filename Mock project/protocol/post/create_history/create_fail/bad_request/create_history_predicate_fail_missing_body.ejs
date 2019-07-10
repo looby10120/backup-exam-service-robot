@@ -1,0 +1,38 @@
+{
+    "or": [
+        {
+            "equals": {
+                "path": "/api/exam/create_history",
+                "method": "POST",
+                "headers": {
+                    "Content-Type" : "application/json"
+                }
+            }
+        },
+        {
+            "exists": {
+                "body": {
+                    "historyExamId": 1,
+                    "historyEmployeeId": 89000,
+                    "historyScore": 10
+                }
+            }
+        },
+        {
+            "matches": {
+                "body": {
+                    "historyEmployeeId": 89000,
+                    "historyScore": 10
+                }
+            }
+        },
+        {
+            "matches": {
+                "body": {
+                    "historyExamId": 1,
+                    "historyEmployeeId": 89000
+                }
+            }
+        }
+    ]
+}

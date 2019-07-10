@@ -1,0 +1,17 @@
+{
+    "and": [
+        {
+            "equals": {
+                "method": "POST",
+                "headers": {
+                    "Content-Type": "application/json"
+                }
+            }
+        },
+        {
+            "matches": {
+                "path": "^/api/exam/(create_history([A-z]|[0-9]|%20)+$)"
+            }
+        }
+    ]
+}
