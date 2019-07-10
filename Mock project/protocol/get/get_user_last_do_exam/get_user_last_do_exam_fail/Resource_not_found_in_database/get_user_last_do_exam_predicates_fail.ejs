@@ -1,11 +1,10 @@
 {
-    
-    "and":[
-       {
-            "equals":{
-                "path":"/api/exam/last_exam/20",
-                "method":"GET"
-            }
-       }
-    ]
- }
+    "equals": {
+        "method": "GET"
+    }
+},
+{
+    "matches": {
+        "path": "^/api/exam/last_exam/[0-9]+$"
+    }
+}
